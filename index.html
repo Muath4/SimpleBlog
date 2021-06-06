@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <title>Hello, world!</title>
+  <script>
+    window.onload = function loadArticles () {
+
+      var articlesPlace = document.getElementById("articles");
+      for (var i = 0; i < localStorage.length; i+=2) {
+
+      
+        
+        let divCol = document.createElement("div");
+        let divCard = document.createElement("div");
+        let divCardBody = document.createElement("div");
+        let h5Tag = document.createElement("h5");
+        let pTag = document.createElement("p");
+
+
+        divCol.setAttribute("class","col");
+        divCard.setAttribute("class","card");
+        divCardBody.setAttribute("class","card-body");
+        h5Tag.setAttribute("class","card-title");
+        pTag.setAttribute("class","card-text");
+
+
+    
+
+        articlesPlace.append(divCol);
+        divCol.append(divCard);
+        divCard.append(divCardBody);
+        divCardBody.append(h5Tag);
+        divCardBody.append(pTag);
+        h5Tag.append(localStorage.getItem("title"+i));
+        pTag.append(localStorage.getItem("article"+i));
+        
+      }
+    }
+    function addNewArticle() {
+      var x = localStorage.length;
+      localStorage.setItem('title' + x,document.getElementById('newArticleForm').elements[0].value);
+      localStorage.
+      setItem('article' + x,document.getElementById('newArticleForm').elements[1].value);
+    }
+
+    function deleteAllArticles(){
+      localStorage.clear();
+      location.reload();
+    }
+
+  </script>
+</head>
+
+
+
+<body class="bg-light">
+
+  <header>
+    <div class="bg-dark collapse" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Moaz Company is one of the best companies in the world and it was established in Saudi Arabia in 2021.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="https://github.com/Muath4" class="text-white">GitHub</a></li>
+              <li><a href="mailto: abogbl4@gmail.com" class="text-white">Email me</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+
+  <main role="main">
+    <section class="text-center  m-4">
+      <div class="container">
+        <h1 class="jumbotron-heading">Muath's Blog</h1>
+        <p class="lead text-muted">This blog is designed to publish the latest news about Muath Company.</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2 collapsed" data-bs-toggle="collapse" data-bs-target="#newArticleForm"
+            aria-controls="newArticleForm" aria-expanded="false" aria-label="Toggle navigation">Make new Article</a>
+
+          <a href="#" class="btn btn-secondary my-2" data-bs-toggle="modal" data-bs-target="#deleteConfirmation" >Delete all articles</a>
+          <div class="modal fade text-dark" id="deleteConfirmation" tabindex="-1" aria-labelledby="deleteConfirmation" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteConfirmation">Delete all Articles!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Coution: this will delete all the articles!<br>There no return!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="deleteAllArticles()">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <form action="html.html" class="row g-4 collapse" style="margin-right: 5em;margin-left: 5em;" id="newArticleForm"
+          onsubmit="addNewArticle()">
+          <div class="col-12">
+            <label for="validationDefault01" class="form-label">Title</label>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="Title" required>
+          </div>
+
+          <div class="col-12">
+            <label for="validationDefault03" class="form-label">Content</label>
+            <textarea type="text" class="form-control" id="validationDefault03" required
+              placeholder="Content"></textarea>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit the article</button>
+          </div>
+        </form>
+
+
+
+        </p>
+      </div>
+    </section>
+
+    
+    <div class="row row-cols-1 row-cols-md-1 g-4 m-4" id="articles">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Default article (UNDELETABLE)</h5>
+            <p class="card-text">Here is the article text.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+</body>
+
+</html>
